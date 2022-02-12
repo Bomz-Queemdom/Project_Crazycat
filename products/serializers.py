@@ -1,6 +1,5 @@
 from rest_framework.serializers import ModelSerializer
 from .models import *
-from drf_writable_nested import WritableNestedModelSerializer
 
 
 class CategorySerializer(ModelSerializer):
@@ -22,10 +21,17 @@ class ProductImageSerializer(ModelSerializer):
         model = Productimages
         fields = '__all__'
 
+
 class ProductImageSerializer2(ModelSerializer):
     class Meta:
         model = Productimages
-        fields = ['id','image']
+        fields = ['id', 'image']
+
+
+class ProductDetailSerializer(ModelSerializer):
+    class Meta:
+        model = ProductDetail
+        fields = ['properTy', 'caution']
 
 
 class ProductSerializer(ModelSerializer):
@@ -34,4 +40,5 @@ class ProductSerializer(ModelSerializer):
         fields = '__all__'
 
     subcategory = SubCategorySerializer(read_only=True, many=True)
+    productdetail = ProductDetailSerializer(read_only=True)
     productimages = ProductImageSerializer(read_only=True, many=True)

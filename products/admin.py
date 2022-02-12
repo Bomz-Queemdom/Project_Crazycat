@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import *
 
+
 # Register your models here.
 class SubCategoryInline(admin.TabularInline):
     model = SubCategory
@@ -11,23 +12,33 @@ class ProductimagesInline(admin.TabularInline):
     model = Productimages
     fk_name = 'product'
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [SubCategoryInline]
     list_display = ['name']
     list_filter = ['name']
 
+
+class ProductDetailInline(admin.TabularInline):
+    model = ProductDetail
+    fk_name = "product"
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    inlines = [ProductimagesInline]
+    inlines = [ProductimagesInline,ProductDetailInline]
     list_display = ['name', 'price', 'amount', 'get_subcategory', 'created_date', 'updated_date']
     search_fields = ['name']
     list_filter = ['subcategory__category__name', 'subcategory__name']
     filter_horizontal = ['subcategory']
 
+
+
 @admin.register(Productimages)
 class ProductImageAdmin(admin.ModelAdmin):
     list_display = ['image_tag']
+
     def image_tag(self, obj):
         from django.utils.html import format_html
         return format_html(

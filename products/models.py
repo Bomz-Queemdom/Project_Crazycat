@@ -16,12 +16,10 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
-
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     amount = models.IntegerField()
-    detail = models.TextField()
     subcategory = models.ManyToManyField(SubCategory)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
@@ -34,6 +32,11 @@ class Product(models.Model):
         return ",".join([p.name for p in self.subcategory.all()])
 
     get_subcategory.fget.short_description = 'subcategory'
+
+class ProductDetail(models.Model):
+    properTy = models.TextField(blank=True,null=True)
+    caution = models.TextField(blank=True,null=True)
+    product = models.OneToOneField(Product,related_name='productdetail',on_delete=models.CASCADE)
 
 
 class Productimages(models.Model):
