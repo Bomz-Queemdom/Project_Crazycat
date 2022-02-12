@@ -22,6 +22,11 @@ class ProductImageSerializer(ModelSerializer):
         model = Productimages
         fields = '__all__'
 
+class ProductImageSerializer2(ModelSerializer):
+    class Meta:
+        model = Productimages
+        fields = ['id','image']
+
 
 class ProductSerializer(ModelSerializer):
     class Meta:

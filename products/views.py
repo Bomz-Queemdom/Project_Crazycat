@@ -13,3 +13,7 @@ class ProductView(ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ['product__name']
     filterset_fields = ['subcategory', 'subcategory__category']
+
+class ProductImageView(ModelViewSet):
+    queryset = Productimages.objects.order_by('pk')
+    serializer_class = ProductImageSerializer2
