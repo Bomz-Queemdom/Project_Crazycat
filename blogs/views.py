@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from rest_framework.viewsets import ModelViewSet
 from .serializers import *
 
@@ -7,11 +9,16 @@ from .serializers import *
 class DocumentView(ModelViewSet):
     queryset = Document.objects.order_by('pk')
     serializer_class = DocumentSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['type']
 
 
 class QuestionView(ModelViewSet):
     queryset = Question.objects.order_by('pk')
     serializer_class = QuestionSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['questionhastag__hastag']
+    filterset_fields = ['questionhastag__hastag']
 
 
 class AnswerView(ModelViewSet):

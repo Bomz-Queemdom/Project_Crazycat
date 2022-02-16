@@ -18,6 +18,12 @@ class DocumentSerializer(ModelSerializer):
     images = DocumentImageSerializer(many=True, read_only=True)
 
 
+class HastagSerializer(ModelSerializer):
+    class Meta:
+        model = Hastag
+        fields = ['hastag']
+
+
 class QuestionImageSerializer(ModelSerializer):
     class Meta:
         model = QuestionImage
@@ -29,6 +35,7 @@ class QuestionSerializer(ModelSerializer):
         model = Question
         fields = '__all__'
 
+    questionhastag = HastagSerializer(many=True, read_only=True)
     questionimages = QuestionImageSerializer(many=True, read_only=True)
 
 

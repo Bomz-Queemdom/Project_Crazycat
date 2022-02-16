@@ -6,7 +6,7 @@ from account.models import CustomerUser
 class Document(models.Model):
     species_name = models.CharField(max_length=255)
     species_detail = models.TextField()
-
+    type = models.CharField(max_length=255)
     date_create = models.DateTimeField(auto_created=True, auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True)
 
@@ -17,6 +17,7 @@ class DocumentImage(models.Model):
 
 
 # ------------------------------------------------------------------------------------------
+
 
 class Question(models.Model):
     question = models.TextField()
@@ -30,7 +31,12 @@ class Question(models.Model):
 
 class QuestionImage(models.Model):
     image = models.ImageField(upload_to='question_image/', blank=True, null=True)
-    question = models.ForeignKey(Question,related_name='questionimages', on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='questionimages', on_delete=models.CASCADE)
+
+
+class Hastag(models.Model):
+    hastag = models.CharField(max_length=255)
+    question = models.ForeignKey(Question, related_name="questionhastag", on_delete=models.CASCADE)
 
 
 # ------------------------------------------------------------------------------------------
@@ -44,4 +50,4 @@ class Answer(models.Model):
 
 class AnswerImage(models.Model):
     image = models.ImageField(upload_to='answer_image/', blank=True, null=True)
-    answer = models.ForeignKey(Answer,related_name='answerimages', on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, related_name='answerimages', on_delete=models.CASCADE)

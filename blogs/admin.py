@@ -3,9 +3,11 @@ from django.contrib import admin
 # Register your models here.
 from blogs.models import *
 
+
 class DocumentImageInline(admin.TabularInline):
     model = DocumentImage
     fk_name = 'document'
+
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
@@ -20,9 +22,14 @@ class QuestionImageInline(admin.TabularInline):
     fk_name = 'question'
 
 
+class HastagInline(admin.TabularInline):
+    model = Hastag
+    fk_name = 'question'
+
+
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    inlines = [QuestionImageInline]
+    inlines = [QuestionImageInline, HastagInline]
     list_display = ['question', 'number_of_likes', 'date_post', 'posted_by']
 
 
