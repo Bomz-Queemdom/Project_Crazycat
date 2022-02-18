@@ -34,6 +34,12 @@ class ProductDetailSerializer(ModelSerializer):
         fields = ['properTy', 'caution']
 
 
+class ProductHowToUseSerializer(ModelSerializer):
+    class Meta:
+        model = ProductHowToUse
+        fields = ['howToUse']
+
+
 class ProductSerializer(ModelSerializer):
     class Meta:
         model = Product
@@ -42,3 +48,4 @@ class ProductSerializer(ModelSerializer):
     subcategory = SubCategorySerializer(read_only=True, many=True)
     productdetail = ProductDetailSerializer(read_only=True)
     productimages = ProductImageSerializer(read_only=True, many=True)
+    howToUseProduct = ProductHowToUseSerializer(read_only=True, many=True)

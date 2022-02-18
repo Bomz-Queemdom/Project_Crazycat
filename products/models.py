@@ -16,6 +16,7 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=7, decimal_places=2)
@@ -33,12 +34,18 @@ class Product(models.Model):
 
     get_subcategory.fget.short_description = 'subcategory'
 
+
 class ProductDetail(models.Model):
-    properTy = models.TextField(blank=True,null=True)
-    caution = models.TextField(blank=True,null=True)
-    product = models.OneToOneField(Product,related_name='productdetail',on_delete=models.CASCADE)
+    properTy = models.TextField(blank=True, null=True)
+    caution = models.TextField(blank=True, null=True)
+    product = models.OneToOneField(Product, related_name='productdetail', on_delete=models.CASCADE)
+
+
+class ProductHowToUse(models.Model):
+    howToUse = models.TextField(blank=True, null=True)
+    product = models.ForeignKey(Product,related_name='howToUseProduct' ,on_delete=models.CASCADE)
 
 
 class Productimages(models.Model):
-    product = models.ForeignKey(Product,related_name='productimages', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='productimages', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='productImg/')

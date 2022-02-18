@@ -25,14 +25,18 @@ class ProductDetailInline(admin.TabularInline):
     fk_name = "product"
 
 
+class ProductHowToUse(admin.TabularInline):
+    model = ProductHowToUse
+    fk_name = 'product'
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    inlines = [ProductimagesInline,ProductDetailInline]
+    inlines = [ProductimagesInline, ProductDetailInline,ProductHowToUse]
     list_display = ['name', 'price', 'amount', 'get_subcategory', 'created_date', 'updated_date']
     search_fields = ['name']
     list_filter = ['subcategory__category__name', 'subcategory__name']
     filter_horizontal = ['subcategory']
-
 
 
 @admin.register(Productimages)
