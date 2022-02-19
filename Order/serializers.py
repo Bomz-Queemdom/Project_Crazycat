@@ -1,13 +1,14 @@
 from rest_framework.serializers import ModelSerializer
 from .models import *
 from products.serializers import ProductSerializer
-from drf_writable_nested import WritableNestedModelSerializer
 
 
 class FavoriteProductSerializer(ModelSerializer):
     class Meta:
         model = FavoriteProduct
         fields = '__all__'
+
+    product = ProductSerializer()
 
 
 class BasketSerializer(ModelSerializer):

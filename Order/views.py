@@ -22,3 +22,5 @@ class PaymentView(ModelViewSet):
 class FavoriteProductView(ModelViewSet):
     queryset = FavoriteProduct.objects.order_by('pk')
     serializer_class = FavoriteProductSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['customer__id']
