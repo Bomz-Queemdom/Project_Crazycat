@@ -10,8 +10,15 @@ from .serializers import *
 class BasketView(ModelViewSet):
     queryset = Basket.objects.order_by('pk')
     serializer_class = BasketSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['customer__id']
 
 
 class PaymentView(ModelViewSet):
     queryset = Payment.objects.order_by('pk')
     serializer_class = PaymentSerializer
+
+
+class FavoriteProductView(ModelViewSet):
+    queryset = FavoriteProduct.objects.order_by('pk')
+    serializer_class = FavoriteProductSerializer

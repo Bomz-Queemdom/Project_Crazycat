@@ -18,5 +18,6 @@ class Address(models.Model):
     sub_district = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     province = models.CharField(max_length=255)
+    postal = models.CharField(max_length=6)
     detail = models.TextField()
     customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)

@@ -4,9 +4,12 @@ from account.models import CustomerUser
 
 # Create your models here.
 class Document(models.Model):
-    species_name = models.CharField(max_length=255)
-    species_detail = models.TextField()
+    title = models.CharField(max_length=255)
+    descrioption = models.TextField()
     type = models.CharField(max_length=255)
+    general_characteristics = models.TextField()
+    Habits = models.TextField()
+    care = models.TextField()
     date_create = models.DateTimeField(auto_created=True, auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True)
 

@@ -1,11 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django_filters import filters
+from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.viewsets import ModelViewSet
 from account.serializers import *
 
+
 class AddressView(ModelViewSet):
     queryset = Address.objects.order_by('pk')
     serializer_class = AddressSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['customer__id']

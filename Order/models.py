@@ -8,7 +8,7 @@ from products.models import Product
 
 class Basket(models.Model):
     customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product,related_name='products', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='products', on_delete=models.CASCADE)
     Number_of_products_needed = models.IntegerField()
 
     @property
@@ -16,6 +16,12 @@ class Basket(models.Model):
         return self.product.price
 
     get_price.fget.short_description = 'price'
+
+
+# --------------------------------------------------------------------------------------
+class FavoriteProduct(models.Model):
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
 
 
 # --------------------------------------------------------------------------------------
@@ -29,7 +35,6 @@ class Payment(models.Model):
     status = models.CharField(max_length=255, blank=True, null=True)
     payment_amount = models.DecimalField(max_digits=7, decimal_places=2)
 
-
     @property
     def get_products(self):
         return ",".join([p.product.name for p in self.basket.all()])
@@ -40,4 +45,4 @@ class Payment(models.Model):
 class SilpImage(models.Model):
     slip = models.ImageField(blank=True, null=True, upload_to='slip/')
     proofoftransfer = models.ImageField(blank=True, null=True, upload_to='หลักฐานการโอนเงิน/')
-    payment = models.OneToOneField(Payment,related_name='paymentimage', on_delete=models.CASCADE)
+    payment = models.OneToOneField(Payment, related_name='paymentimage', on_delete=models.CASCADE)

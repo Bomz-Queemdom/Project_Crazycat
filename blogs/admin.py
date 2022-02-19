@@ -12,7 +12,7 @@ class DocumentImageInline(admin.TabularInline):
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     inlines = [DocumentImageInline]
-    list_display = ['species_name', 'date_create', 'date_update']
+    list_display = ['type', 'title', 'date_create', 'date_update']
 
 
 # ------------------------------------------------------------------------------------------

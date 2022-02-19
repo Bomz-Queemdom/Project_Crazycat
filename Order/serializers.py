@@ -4,6 +4,12 @@ from products.serializers import ProductSerializer
 from drf_writable_nested import WritableNestedModelSerializer
 
 
+class FavoriteProductSerializer(ModelSerializer):
+    class Meta:
+        model = FavoriteProduct
+        fields = '__all__'
+
+
 class BasketSerializer(ModelSerializer):
     class Meta:
         model = Basket
@@ -15,7 +21,7 @@ class BasketSerializer(ModelSerializer):
 class SlipImageSerializer(ModelSerializer):
     class Meta:
         model = SilpImage
-        fields = ['slip','proofoftransfer']
+        fields = ['slip', 'proofoftransfer']
 
 
 class PaymentSerializer(ModelSerializer):
