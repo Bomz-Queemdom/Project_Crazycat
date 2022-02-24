@@ -44,5 +44,10 @@ class Payment(models.Model):
 
 class SilpImage(models.Model):
     slip = models.ImageField(blank=True, null=True, upload_to='slip/')
-    proofoftransfer = models.ImageField(blank=True, null=True, upload_to='หลักฐานการโอนเงิน/')
     payment = models.OneToOneField(Payment, related_name='paymentimage', on_delete=models.CASCADE)
+
+
+class Proofoftransfer(models.Model):
+    proofoftransfer = models.ImageField(blank=True, null=True, upload_to='หลักฐานการโอนเงิน/')
+    payment = models.OneToOneField(Payment, related_name='proofoftransferimage', on_delete=models.CASCADE)
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)

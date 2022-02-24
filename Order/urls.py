@@ -5,6 +5,8 @@ router = SimpleRouter()
 
 router.register(r'basket', views.BasketView)
 router.register(r'payment', views.PaymentView)
-router.register(r'FavoriteProduct', views.FavoriteProductView)
+router.register(r'favoriteProduct', views.FavoriteProductView)
+router.register(r'proofoftransfer', views.ProofoftransferView)
+router.register(r'silpimage', views.SilpImageView)
 
 urlpatterns = router.urls

@@ -16,18 +16,20 @@ class BasketSerializer(ModelSerializer):
         model = Basket
         fields = '__all__'
 
-    product = ProductSerializer()
+
+class ProofoftransferSerializer(ModelSerializer):
+    class Meta:
+        model = Proofoftransfer
+        fields = '__all__'
 
 
 class SlipImageSerializer(ModelSerializer):
     class Meta:
         model = SilpImage
-        fields = ['slip', 'proofoftransfer']
+        fields = ['slip']
 
 
 class PaymentSerializer(ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
-
-    paymentimage = SlipImageSerializer()
