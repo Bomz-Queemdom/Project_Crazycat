@@ -30,6 +30,12 @@ class SlipImageSerializer(ModelSerializer):
         fields = ['slip']
 
 
+class SlipImageEditSerializer(ModelSerializer):
+    class Meta:
+        model = SilpImage
+        fields = '__all__'
+
+
 class PaymentSerializer(ModelSerializer):
     class Meta:
         model = Payment
