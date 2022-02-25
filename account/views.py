@@ -12,3 +12,7 @@ class AddressView(ModelViewSet):
     serializer_class = AddressSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['customer__id']
+
+class CustomerUserView(ModelViewSet):
+    queryset = CustomerUser.objects.order_by('pk')
+    serializer_class = CustomerSerializer

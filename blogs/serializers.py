@@ -30,6 +30,18 @@ class QuestionImageSerializer(ModelSerializer):
         fields = ['image']
 
 
+class HastagEditSerializer(ModelSerializer):
+    class Meta:
+        model = Hastag
+        fields = '__all__'
+
+
+class QuestionEditImageSerializer(ModelSerializer):
+    class Meta:
+        model = QuestionImage
+        fields = '__all__'
+
+
 class QuestionSerializer(ModelSerializer):
     class Meta:
         model = Question
@@ -45,9 +57,15 @@ class AnswerImageSerializer(ModelSerializer):
         fields = ['image']
 
 
+class AnswerImageEditSerializer(ModelSerializer):
+    class Meta:
+        model = AnswerImage
+        fields = '__all__'
+
+
 class AnswerSerializer(ModelSerializer):
     class Meta:
         model = Answer
         fields = '__all__'
 
-    answerimages = AnswerImageSerializer(read_only=True, many=True)
+    answerimages = AnswerImageSerializer(many=True, read_only=True)

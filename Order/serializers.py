@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from .models import *
 from products.serializers import ProductSerializer
+from account.serializers import *
 
 
 class FavoriteProductSerializer(ModelSerializer):
@@ -30,6 +31,15 @@ class SlipImageSerializer(ModelSerializer):
 
 
 class PaymentSerializer(ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+
+    customer = CustomerSerializer(read_only=True)
+    address = AddressSerializer(read_only=True)
+
+
+class PaymentSerEditializer(ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'

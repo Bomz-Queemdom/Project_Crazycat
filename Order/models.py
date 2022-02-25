@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 # --------------------------------------------------------------------------------------
-from account.models import CustomerUser
+from account.models import CustomerUser, Address
 from products.models import Product
 
 
@@ -27,7 +27,8 @@ class FavoriteProduct(models.Model):
 # --------------------------------------------------------------------------------------
 class Payment(models.Model):
     basket = models.ManyToManyField(Basket)
-    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    customer = models.ForeignKey(CustomerUser, related_name='customer', on_delete=models.CASCADE)
+    deliveryAddress = models.OneToOneField(Address, related_name='address', on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
     order_end_date = models.DateTimeField(blank=True, null=True)
     No_products_in_the_order = models.IntegerField()

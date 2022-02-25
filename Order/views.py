@@ -18,6 +18,10 @@ class PaymentView(ModelViewSet):
     queryset = Payment.objects.order_by('pk')
     serializer_class = PaymentSerializer
 
+class PaymentEditView(ModelViewSet):
+    queryset = Payment.objects.order_by('pk')
+    serializer_class = PaymentSerEditializer
+
 
 class FavoriteProductView(ModelViewSet):
     queryset = FavoriteProduct.objects.order_by('pk')
@@ -25,11 +29,13 @@ class FavoriteProductView(ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['customer__id']
 
+
 class ProofoftransferView(ModelViewSet):
     queryset = Proofoftransfer.objects.order_by('pk')
     serializer_class = ProofoftransferSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['customer__id']
+
 
 class SilpImageView(ModelViewSet):
     queryset = SilpImage.objects.order_by('pk')

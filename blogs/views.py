@@ -24,3 +24,18 @@ class QuestionView(ModelViewSet):
 class AnswerView(ModelViewSet):
     queryset = Answer.objects.order_by('pk')
     serializer_class = AnswerSerializer
+
+
+class AnswerImageView(ModelViewSet):
+    queryset = AnswerImage.objects.order_by('pk')
+    serializer_class = AnswerImageEditSerializer
+
+
+class HastagView(ModelViewSet):
+    queryset = Hastag.objects.order_by('pk')
+    serializer_class = HastagEditSerializer
+
+
+class QuestionImageView(ModelViewSet):
+    queryset = QuestionImage.objects.order_by('pk')
+    serializer_class = QuestionEditImageSerializer
