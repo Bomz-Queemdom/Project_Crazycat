@@ -24,6 +24,8 @@ class QuestionView(ModelViewSet):
 class AnswerView(ModelViewSet):
     queryset = Answer.objects.order_by('pk')
     serializer_class = AnswerSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['question__id','res_by__id']
 
 
 class AnswerImageView(ModelViewSet):

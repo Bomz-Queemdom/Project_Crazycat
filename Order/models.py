@@ -36,11 +36,18 @@ class Payment(models.Model):
     status = models.CharField(max_length=255, blank=True, null=True)
     payment_amount = models.DecimalField(max_digits=7, decimal_places=2)
 
-    @property
-    def get_products(self):
-        return ",".join([p.product.name for p in self.basket.all()])
+    # @property
+    # def get_products(self):
+    #     return ",".join([p.product.id for p in self.basket.all()])
+    #
+    # get_products.fget.short_description = 'basket id'
 
-    get_products.fget.short_description = 'product list'
+
+class ProductPayment(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
+    amount = models.IntegerField()
+    payment = models.ForeignKey(Payment, related_name='payment_product', on_delete=models.CASCADE)
 
 
 class SilpImage(models.Model):

@@ -2,6 +2,7 @@ from rest_framework.serializers import ModelSerializer
 from .models import *
 from products.serializers import ProductSerializer
 from account.serializers import *
+from drf_writable_nested import WritableNestedModelSerializer
 
 
 class FavoriteProductSerializer(ModelSerializer):
@@ -9,7 +10,7 @@ class FavoriteProductSerializer(ModelSerializer):
         model = FavoriteProduct
         fields = '__all__'
 
-    product = ProductSerializer()
+    # product = ProductSerializer()
 
 
 class BasketSerializer(ModelSerializer):
@@ -36,16 +37,27 @@ class SlipImageEditSerializer(ModelSerializer):
         fields = '__all__'
 
 
+class ProductPaymentSerializer(ModelSerializer):
+    class Meta:
+        model = ProductPayment
+        fields = '__all__'
+
+
 class PaymentSerializer(ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
 
+    payment_product = ProductPaymentSerializer(read_only=True,many=True)
     customer = CustomerSerializer(read_only=True)
     address = AddressSerializer(read_only=True)
+    paymentimage = SlipImageSerializer(read_only=True)
+    proofoftransferimage = ProofoftransferSerializer(read_only=True)
 
 
 class PaymentSerEditializer(ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
+
+    payment_product = ProductPaymentSerializer(many=True)

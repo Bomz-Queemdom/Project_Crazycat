@@ -9,5 +9,6 @@ router.register(r'paymentedit', views.PaymentEditView)
 router.register(r'favoriteProduct', views.FavoriteProductView)
 router.register(r'proofoftransfer', views.ProofoftransferView)
 router.register(r'silpimage', views.SilpImageView)
+router.register(r'productpayment', views.ProductPaymentView)
 
 urlpatterns = router.urls

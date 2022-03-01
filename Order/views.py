@@ -40,3 +40,7 @@ class ProofoftransferView(ModelViewSet):
 class SilpImageView(ModelViewSet):
     queryset = SilpImage.objects.order_by('pk')
     serializer_class = SlipImageEditSerializer
+
+class ProductPaymentView(ModelViewSet):
+    queryset = ProductPayment.objects.order_by('pk')
+    serializer_class = ProductPaymentSerializer

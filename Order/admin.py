@@ -18,10 +18,15 @@ class ProofoftransferInline(admin.TabularInline):
     fk_name = 'payment'
 
 
+class ProductPaymentInline(admin.TabularInline):
+    model = ProductPayment
+    fk_name = 'payment'
+
+
 @admin.register(Payment)
 class OrderAdmin(admin.ModelAdmin):
-    inlines = [SlipImageInline, ProofoftransferInline]
-    list_display = ['customer', 'get_products', 'No_products_in_the_order', 'payment_amount', 'tracking', 'status',
+    inlines = [ProductPaymentInline,SlipImageInline, ProofoftransferInline]
+    list_display = ['id', 'customer', 'No_products_in_the_order', 'payment_amount', 'tracking', 'status',
                     'order_date', 'order_end_date']
     list_filter = ['status', 'order_date', 'order_end_date']
     filter_horizontal = ['basket']
